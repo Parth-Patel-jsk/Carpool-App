@@ -1,0 +1,189 @@
+<RegisterScreen>:
+    name: "register"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1  # White background
+
+        # Back Arrow
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"x": 0.05, "top": 0.95}  # Top-left corner with padding
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "carpool"
+
+        # Title
+        MDLabel:
+            text: "Register Now!"
+            font_size: "26sp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.85}  # Centered title
+            color: rgba(0, 0, 59, 255)
+            halign: "center"
+
+        # Username Input
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "center_y": 0.68}
+            canvas.before:
+                Color:
+                    rgba: rgba(178, 178, 178, 255)  # Gray underline
+                Line:
+                    points: self.x, self.y, self.x + self.width, self.y
+                    width: 1
+            TextInput:
+                id:new_username
+                hint_text: "Username"
+                size_hint: 1, 0.75
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}  # Centered in parent
+                background_color: 0, 0, 0, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+
+        # Driving Licence Number Input
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "center_y": 0.60}
+            canvas.before:
+                Color:
+                    rgba: rgba(178, 178, 178, 255)
+                Line:
+                    points: self.x, self.y, self.x + self.width, self.y
+                    width: 1
+            TextInput:
+                id:new_licence
+                hint_text: "Driving Licence Number"
+                size_hint: 1, 0.75
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                background_color: 0, 0, 0, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+
+        # Email Input
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "center_y": 0.52}
+            canvas.before:
+                Color:
+                    rgba: rgba(178, 178, 178, 255)
+                Line:
+                    points: self.x, self.y, self.x + self.width, self.y
+                    width: 1
+            TextInput:
+                id:new_email
+                hint_text: "Email"
+                size_hint: 1, 0.75
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                background_color: 0, 0, 0, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+
+        # Password Input
+        MDFloatLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "center_y": 0.44}
+            canvas.before:
+                Color:
+                    rgba: rgba(178, 178, 178, 255)
+                Line:
+                    points: self.x, self.y, self.x + self.width, self.y
+                    width: 1
+            TextInput:
+                id: new_password
+                hint_text: "Password"
+                size_hint: 0.85, 0.75
+                pos_hint: {"center_x": 0.43, "center_y": 0.5}
+                background_color: 0, 0, 0, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+            MDIconButton:
+                icon: "eye-off"
+                pos_hint: {"center_x": 0.9, "center_y": 0.5}
+                size_hint: None, None
+                size: dp(20), dp(20)
+                on_release:
+                    self.icon = "eye" if new_password.password else "eye-off"
+                    new_password.password = not new_password.password
+        # Create Account Button
+        Button:
+            text: "Create Account"
+            size_hint: 0.66, 0.065
+            pos_hint: {"center_x": 0.5, "center_y": 0.32}
+            background_color: 0, 0, 0, 0
+            on_release:
+                root.manager.transition.direction = "left"
+                app.check(new_username,new_licence,new_email,new_password)
+            canvas.before:
+                Color:
+                    rgba: rgba(52, 0, 231, 255)  # Blue button
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+            color: 1, 1, 1, 1  # White text
+
+        # "or" Divider
+        MDLabel:
+            text: "or"
+            color: rgba(52, 0, 231, 255)
+            pos_hint: {"center_x": 0.5, "center_y": 0.24}
+            font_size: "13sp"
+            halign: "center"
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: 0.25, 0.002
+            pos_hint: {"center_x": 0.35, "center_y": 0.238}
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: 0.25, 0.002
+            pos_hint: {"center_x": 0.65, "center_y": 0.238}
+
+        # Social Media Section
+        MDLabel:
+            text: "Social Media Login"
+            font_size: "13sp"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "center_y": 0.18}
+            color: rgba(135, 133, 193, 255)
+
+        MDGridLayout:
+            cols: 3
+            size_hint: 0.48, 0.07
+            pos_hint: {"center_x": 0.5, "center_y": 0.12}
+            spacing: 10
+            Image:
+                source: "assets/google1.png"
+            Image:
+                source: "assets/facebook.png"
+            Image:
+                source: "assets/apple1.png"
+
+        # Sign In Link
+        MDLabel:
+            text: "Already have an account?"
+            font_size: "11sp"
+            pos_hint: {"center_x": 0.5, "center_y": 0.04}
+            color: rgba(135, 133, 193, 255)
+            halign: "center"
+        MDTextButton:
+            text: "Sign in"
+            font_size: "11sp"
+            pos_hint: {"center_x": 0.65, "center_y": 0.04}
+            color: rgba(52, 0, 231, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "login"

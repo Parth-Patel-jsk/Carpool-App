@@ -1,0 +1,1383 @@
+MDScreenManager:
+    SplashScreen:
+        name: "splash"
+    CarpoolScreen:
+        name: "carpool"
+    LoginScreen:
+        name: "login"
+    RegisterScreen:
+        name: "register"
+    DestinationScreen:
+        name: "destination"
+    HomeScreen:
+        name: "home"
+    RideDetailsScreen:
+        name: "ride_details"
+    OfferRideScreen:
+        name: "offer_ride"
+    RequestRideScreen:
+        name: "request_ride"
+    OTPScreen:
+        name: "otp"
+    ScheduleRideScreen:
+        name: "schedule"
+    PassengerDetailsScreen:
+        name: "passenger_details"
+
+<SplashScreen>:
+    name: "splash"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+
+        Widget:  # Spacer to push content down
+        
+        Image:
+            source: "car_icon.png"
+            size_hint: None, None
+            size: "200dp", "200dp"
+            pos_hint: {"center_x": .5, "center_y": .8}  # Adjusted position
+
+        Widget:  # Spacer between image and text
+        
+        MDLabel:
+            text: "C A R P O O L APP"
+            font_size: "23sp"
+            pos_hint: {"center_y": .7}  # Adjusted position
+            halign: "center"
+            color: rgba(34, 34, 34, 255)
+
+        Widget:  # Spacer to push the progress bar down
+        
+        MDProgressBar:
+            id: progress_bar
+            value: 0
+            size_hint_y: None
+            height: dp(4)
+            pos_hint: {"center_x": .5, "center_y": .05}  # Adjusted position
+            color:  rgba(34, 34, 34, 255)
+
+        Widget:  # Spacer to maintain overall alignment
+
+
+<CarpoolScreen>:
+    name: "carpool"
+    MDFloatLayout:
+        MDTopAppBar:
+            title: "Carpooling App"
+            pos_hint: {"top": 1}
+            md_bg_color: 0.1, 0.5, 0.8, 1  # Blue background
+            left_action_items: [["menu", lambda x: app.open_menu()]]  # Menu icon
+        MDLabel:
+            text: "Welcome to Carpooling App"
+            halign: "center"
+            pos_hint: {"center_y": 0.7}
+            font_style: "H5"
+        MDRaisedButton:
+            text: "Login"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            on_release: app.root.current = "login"
+        MDRaisedButton:
+            text: "Register"
+            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            on_release: app.root.current = "register"
+
+
+
+
+
+<RegisterScreen>:
+    name: "register"
+    MDFloatLayout:
+        MDTextField:
+            id: new_username
+            hint_text: "Create Username"
+            pos_hint: {"center_x": 0.5, "center_y": 0.6}
+            size_hint_x: 0.8
+        MDTextField:
+            id: new_password
+            hint_text: "Create Password"
+            password: True
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            size_hint_x: 0.8
+        MDRaisedButton:
+            text: "Register"
+            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            on_release: root.register_user()
+
+<OTPScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(20)
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(200)
+            MDLabel:
+                text: "[Illustration Placeholder]"
+                halign: "center"
+
+        MDLabel:
+            text: "Verification"
+            halign: "center"
+            font_style: "H5"
+            size_hint_y: None
+            height: dp(40)
+
+        MDLabel:
+            text: "An OTP has been sent to your mobile number"
+            halign: "center"
+            theme_text_color: "Secondary"
+            size_hint_y: None
+            height: dp(30)
+
+        MDBoxLayout:
+            id: otp_fields
+            spacing: dp(10)
+            pos_hint: {"center_x": 0.5}
+            size_hint_y: None
+            height: dp(50)
+
+            MDTextField:
+                text: "1"
+                size_hint_x: 0.2
+                max_text_length: 1
+                halign: "center"
+                pos_hint: {"center_x": 0.1}  # Start off-screen for animation
+            MDTextField:
+                text: "4"
+                size_hint_x: 0.2
+                max_text_length: 1
+                halign: "center"
+                pos_hint: {"center_x": 0.1}
+            MDTextField:
+                text: "9"
+                size_hint_x: 0.2
+                max_text_length: 1
+                halign: "center"
+                pos_hint: {"center_x": 0.1}
+            MDTextField:
+                text: "3"
+                size_hint_x: 0.2
+                max_text_length: 1
+                halign: "center"
+                pos_hint: {"center_x": 0.1}
+
+        MDRoundFlatButton:
+            text: "Resend code"
+            pos_hint: {"center_x": 0.5}
+            size_hint_x: 0.9
+            md_bg_color: [0, 0, 0, 0]
+            text_color: app.theme_cls.primary_color
+
+        MDRoundFlatButton:
+            text: "VERIFY"
+            pos_hint: {"center_x": 0.5}
+            size_hint_x: 0.9
+            on_release: app.root.current = "schedule"
+
+        MDLabel:
+            text: "OTP Verification"
+            halign: "center"
+            theme_text_color: "Secondary"
+            size_hint_y: None
+            height: dp(30)
+
+<ScheduleRideScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(20)
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "20sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "home"
+
+        MDLabel:
+            text: "Schedule Ride"
+            halign: "center"
+            font_style: "H5"
+            size_hint_y: None
+            height: dp(40)
+
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: dp(10)
+            size_hint_y: None
+            height: dp(80)
+
+            MDLabel:
+                text: "Home"
+                theme_text_color: "Primary"
+            MDLabel:
+                text: "Workplace"
+                theme_text_color: "Primary"
+
+        MDBoxLayout:
+            spacing: dp(10)
+            size_hint_y: None
+            height: dp(50)
+
+            MDLabel:
+                text: "Carex Mini"
+            MDLabel:
+                text: "₹ 15 /km"
+            MDLabel:
+                text: "5 mins"
+            MDRoundFlatButton:
+                text: "CHANGE RIDE"
+                md_bg_color: [0, 0, 0, 0]
+                text_color: app.theme_cls.primary_color
+
+        MDTextField:
+            hint_text: "From"
+            text: "01/01/2022"
+            mode: "rectangle"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            hint_text: "To"
+            text: "10/01/2022"
+            mode: "rectangle"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            hint_text: "Time"
+            text: "8:30 AM"
+            mode: "rectangle"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+
+        MDTextField:
+            hint_text: "Number of passengers"
+            text: "1"
+            mode: "rectangle"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+
+        MDRoundFlatButton:
+            id: schedule_button
+            text: "SCHEDULE NOW"
+            pos_hint: {"center_x": 0.5}
+            size_hint: (0.7, 0.05)  # Start smaller for scaling animation
+            size_hint_x: 0.9
+            on_release: app.root.current = "home"
+        MDLabel:
+            text: "Schedule Ride"
+            halign: "center"
+            theme_text_color: "Secondary"
+            size_hint_y: None
+            height: dp(30)
+
+<PassengerDetailsScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(10)  # Adjusted for 360px width
+        spacing: dp(8)
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "20sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "home"
+        MDLabel:
+            text: "Passenger Details"
+            halign: "center"
+            font_style: "H6"  # Slightly smaller for better fit
+            size_hint_y: None
+            height: dp(35)
+
+        MDCard:
+            id: details_card
+            orientation: "vertical"
+            padding: dp(8)
+            size_hint: (0.95, None)
+            height: dp(200)  # Reduced height for compactness
+            pos_hint: {"center_x": 0.5}
+            opacity: 0
+
+            MDBoxLayout:
+                spacing: dp(8)
+
+                MDCard:
+                    size_hint: (None, None)
+                    size: (dp(65), dp(65))  # Slightly smaller profile image
+                    radius: [dp(32.5)]
+                    MDLabel:
+                        text: "[Image]"
+                        halign: "center"
+                        valign: "middle"
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(3)
+
+                    MDLabel:
+                        text: "DINESH"
+                        font_style: "H6"
+                        font_size: sp(14)  # Adjusted
+                    MDLabel:
+                        text: "TCS, CHENNAI"
+                        theme_text_color: "Secondary"
+                        font_size: sp(11)  # Adjusted
+
+                    MDBoxLayout:
+                        spacing: dp(3)
+                        MDLabel:
+                            text: "4.5"
+                            font_size: sp(12)
+                        MDIcon:
+                            icon: "star"
+                            theme_text_color: "Custom"
+                            text_color: [1, 0.84, 0, 1]
+                            font_size: sp(14)
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: dp(3)
+
+                MDLabel:
+                    text: "Company Address"
+                    theme_text_color: "Secondary"
+                    font_size: sp(11)
+                MDLabel:
+                    text: "SHOZHINGANALLUR IT PARK, CHENNAI"
+                    font_size: sp(11)
+
+                MDLabel:
+                    text: "Work Experience"
+                    theme_text_color: "Secondary"
+                    font_size: sp(11)
+                MDLabel:
+                    text: "25 years"
+                    font_size: sp(11)
+
+                MDLabel:
+                    text: "Double Vaccinated?"
+                    theme_text_color: "Secondary"
+                    font_size: sp(11)
+                MDLabel:
+                    text: "YES"
+                    font_size: sp(11)
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(25)
+            MDLabel:
+                text: "REVIEWS"
+                font_style: "H6"
+                font_size: sp(14)  # Adjusted
+            MDLabel:
+                text: "SEE ALL"
+                halign: "right"
+                theme_text_color: "Primary"
+                font_size: sp(11)
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            MDBoxLayout:
+                id: reviews_container
+                orientation: "vertical"
+                spacing: dp(6)
+                size_hint_y: None
+                height: self.minimum_height  
+
+                # Review 1
+                MDCard:
+                    padding: dp(6)
+                    size_hint: (0.95, None)
+                    height: dp(80)  # Reduced for compactness
+                    pos_hint: {"center_x": 0.5}
+
+                    MDBoxLayout:
+                        spacing: dp(6)
+
+                        MDCard:
+                            size_hint: (None, None)
+                            size: (dp(35), dp(35))  
+                            radius: [dp(17.5)]
+                            MDLabel:
+                                text: "[Image]"
+                                halign: "center"
+                                valign: "middle"
+
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            spacing: dp(3)
+
+                            MDBoxLayout:
+                                MDLabel:
+                                    text: "Good Co-passenger"
+                                    font_size: sp(12)
+                                MDLabel:
+                                    text: "Suresh"
+                                    halign: "right"
+                                    theme_text_color: "Secondary"
+                                    font_size: sp(10)
+
+                            MDBoxLayout:
+                                spacing: dp(1)
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+
+                            MDLabel:
+                                text: "Very good person, safe to travel with, friendly personality."
+                                theme_text_color: "Secondary"
+                                font_size: sp(10)
+
+                # Review 2
+                MDCard:
+                    padding: dp(6)
+                    size_hint: (0.95, None)
+                    height: dp(80)
+                    pos_hint: {"center_x": 0.5}
+
+                    MDBoxLayout:
+                        spacing: dp(6)
+
+                        MDCard:
+                            size_hint: (None, None)
+                            size: (dp(35), dp(35))
+                            radius: [dp(17.5)]
+                            MDLabel:
+                                text: "[Image]"
+                                halign: "center"
+                                valign: "middle"
+
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            spacing: dp(3)
+
+                            MDBoxLayout:
+                                MDLabel:
+                                    text: "Friendly guy"
+                                    font_size: sp(12)
+                                MDLabel:
+                                    text: "Lokesh"
+                                    halign: "right"
+                                    theme_text_color: "Secondary"
+                                    font_size: sp(10)
+
+                            MDBoxLayout:
+                                spacing: dp(1)
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star-outline"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+
+                            MDLabel:
+                                text: "I absolutely loved being with Dinesh. Though we didn't know each..."
+                                theme_text_color: "Secondary"
+                                font_size: sp(10)
+
+                            MDLabel:
+                                text: "READ MORE"
+                                theme_text_color: "Primary"
+                                halign: "right"
+                                font_size: sp(10)
+                                pos_hint: {"x": 0.7}  # Ensures proper alignment
+
+
+<DestinationScreen>:
+    name: "destination"
+    MDFloatLayout:
+        MDLabel:
+            text: "Enter Destination"
+            halign: "center"
+            pos_hint: {"center_y": 0.7}
+            font_style: "H5"
+
+        MDTextField:
+            id: destination_input
+            hint_text: "Enter Destination"
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            size_hint_x: 0.8
+
+        MDRaisedButton:
+            text: "See on Map"
+            pos_hint: {"center_x": 0.5, "center_y": 0.4}
+            on_release: root.show_route()  # Ensure this method exists in main.py
+
+        MDRaisedButton:
+            text: "Rides"
+            pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            on_release: app.root.current = "home"
+
+        MDRaisedButton:
+            text: "Back"
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.9}
+            on_release: root.go_back()
+
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            title: "Carpool App"
+            elevation: 4
+            right_action_items: [["account", lambda x: app.show_user_profile()]]
+        
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"center_y": .95}
+                user_font_size: "20sp"
+                theme_text_color: "Custom"
+                text_color: rgba(26, 24, 58, 255)
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "carpool"
+
+        MDTabs:
+            id: tabs
+            on_tab_switch: app.on_tab_switch(*args)
+            
+            Tab:
+                title: "Available Rides"
+                icon: "car-multiple"
+                
+                ScrollView:
+                    MDList:
+                        id: rides_list
+                        padding: dp(20)
+                        spacing: dp(15)
+                        
+                        MDCard:
+                            size_hint: None, None
+                            size: "320dp", "100dp"
+                            padding: dp(15)
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                spacing: dp(10)
+                                
+                                MDIconButton:
+                                    icon: "car"
+                                    pos_hint: {"center_y": .5}
+                                    on_release: app.root.current = "passenger_details"
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    spacing: dp(2)
+                                    
+                                    MDLabel:
+                                        text: "Downtown to University"
+                                        font_style: "H6"
+                                        size_hint_y: None
+                                        height: self.texture_size[1]
+                                    
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: dp(20)
+                                        
+                                        MDIcon:
+                                            icon: "clock-outline"
+                                            size_hint: None, None
+                                            size: dp(20), dp(20)
+                                        
+                                        MDLabel:
+                                            text: "8:30 AM"
+                                            font_style: "Caption"
+                                    
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: dp(20)
+                                        
+                                        MDIcon:
+                                            icon: "account-outline"
+                                            size_hint: None, None
+                                            size: dp(20), dp(20)
+                                        
+                                        MDLabel:
+                                            text: "2 seats available"
+                                            font_style: "Caption"
+                                
+                                MDLabel:
+                                    text: "$5"
+                                    halign: "right"
+                                    size_hint_x: None
+                                    width: dp(40)
+                        
+                        MDCard:
+                            size_hint: None, None
+                            size: "320dp", "100dp"
+                            padding: dp(15)
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                spacing: dp(10)
+                                
+                                MDIconButton:
+                                    icon: "car"
+                                    pos_hint: {"center_y": .5}
+                                
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    spacing: dp(2)
+                                    
+                                    MDLabel:
+                                        text: "Mall to Suburbs"
+                                        font_style: "H6"
+                                        size_hint_y: None
+                                        height: self.texture_size[1]
+                                    
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: dp(20)
+                                        
+                                        MDIcon:
+                                            icon: "clock-outline"
+                                            size_hint: None, None
+                                            size: dp(20), dp(20)
+                                        
+                                        MDLabel:
+                                            text: "5:45 PM"
+                                            font_style: "Caption"
+                                    
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: dp(20)
+                                        
+                                        MDIcon:
+                                            icon: "account-outline"
+                                            size_hint: None, None
+                                            size: dp(20), dp(20)
+                                        
+                                        MDLabel:
+                                            text: "3 seats available"
+                                            font_style: "Caption"
+                                
+                                MDLabel:
+                                    text: "$7"
+                                    halign: "right"
+                                    size_hint_x: None
+                                    width: dp(40)
+                        
+                        MDCard:
+                            size_hint: None, None
+                            size: "320dp", "100dp"
+                            padding: dp(15)
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                spacing: dp(10)
+                                
+                                MDIconButton:
+                                    icon: "car"
+                                    pos_hint: {"center_y": .5}
+                                
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    spacing: dp(2)
+                                    
+                                    MDLabel:
+                                        text: "Airport to City Center"
+                                        font_style: "H6"
+                                        size_hint_y: None
+                                        height: self.texture_size[1]
+                                    
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: dp(20)
+                                        
+                                        MDIcon:
+                                            icon: "clock-outline"
+                                            size_hint: None, None
+                                            size: dp(20), dp(20)
+                                        
+                                        MDLabel:
+                                            text: "10:15 AM"
+                                            font_style: "Caption"
+                                    
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: dp(20)
+                                        
+                                        MDIcon:
+                                            icon: "account-outline"
+                                            size_hint: None, None
+                                            size: dp(20), dp(20)
+                                        
+                                        MDLabel:
+                                            text: "1 seat available"
+                                            font_style: "Caption"
+                                
+                                MDLabel:
+                                    text: "$12"
+                                    halign: "right"
+                                    size_hint_x: None
+                                    width: dp(40)
+            
+            Tab:
+                title: "My Rides"
+                icon: "car-clock"
+                
+                ScrollView:
+                    MDList:
+                        padding: dp(20)
+                        spacing: dp(15)
+                        
+                        MDCard:
+                            size_hint: None, None
+                            size: "320dp", "100dp"
+                            padding: dp(15)
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                spacing: dp(10)
+                                
+                                MDIconButton:
+                                    icon: "car"
+                                    pos_hint: {"center_y": .5}
+                                
+                                BoxLayout:
+                                    orientation: 'vertical'
+                                    spacing: dp(2)
+                                    
+                                    MDLabel:
+                                        text: "Work Commute"
+                                        font_style: "H6"
+                                        size_hint_y: None
+                                        height: self.texture_size[1]
+                                    
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: dp(20)
+                                        
+                                        MDIcon:
+                                            icon: "map-marker-outline"
+                                            size_hint: None, None
+                                            size: dp(20), dp(20)
+                                        
+                                        MDLabel:
+                                            text: "Home to Office"
+                                            font_style: "Caption"
+                                    
+                                    BoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: dp(20)
+                                        
+                                        MDIcon:
+                                            icon: "calendar-clock"
+                                            size_hint: None, None
+                                            size: dp(20), dp(20)
+                                        
+                                        MDLabel:
+                                            text: "Tomorrow, 8:00 AM"
+                                            font_style: "Caption"
+                                
+                                MDChip:
+                                    label: "Booked"
+                                    icon: "check"
+                                    pos_hint: {"center_y": .5}
+            
+            Tab:
+                title: "Profile"
+                icon: "account"
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                    padding: dp(20)
+                    spacing: dp(15)
+                    
+                    MDCard:
+                        size_hint_y: None
+                        height: "150dp"
+                        padding: dp(15)
+                        
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            spacing: dp(20)
+                            
+                            MDIconButton:
+                                icon: "account-circle"
+                                user_font_size: "64sp"
+                                pos_hint: {"center_y": .5}
+                            
+                            BoxLayout:
+                                orientation: 'vertical'
+                                spacing: dp(5)
+                                
+                                MDLabel:
+                                    text: "John Doe"
+                                    font_style: "H5"
+                                
+                                MDLabel:
+                                    text: "Rating: 4.8/5"
+                                    font_style: "Body1"
+                                
+                                MDLabel:
+                                    text: "Member since: Jan 2023"
+                                    font_style: "Caption"
+                    
+                    MDSeparator:
+                    
+                    MDLabel:
+                        text: "Ride History"
+                        font_style: "H6"
+                        size_hint_y: None
+                        height: dp(30)
+                    
+                    MDList:
+                        ThreeLineIconListItem:
+                            text: "Downtown to University"
+                            secondary_text: "March 15, 2023"
+                            tertiary_text: "$5.00"
+                            IconLeftWidget:
+                                icon: "car"
+                        
+                        ThreeLineIconListItem:
+                            text: "Airport to City Center"
+                            secondary_text: "March 10, 2023"
+                            tertiary_text: "$12.00"
+                            IconLeftWidget:
+                                icon: "car"
+        
+        MDFloatingActionButton:
+            icon: "plus"
+            pos_hint: {"center_x": .85, "center_y": .1}
+            on_release: app.show_ride_options()
+
+        
+
+<RideDetailsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        
+        MDTopAppBar:
+            title: "Pickup & Destination"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: app.go_back()]]
+        
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(20)
+            md_bg_color: 0.95, 0.98, 1, 1  # Light blue background
+            
+            MDCard:
+                size_hint_y: None
+                height: "120dp"
+                padding: dp(15)
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(10)
+                    
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: dp(10)
+                        
+                        MDIcon:
+                            icon: "circle"
+                            theme_text_color: "Custom"
+                            text_color: 0, 0.6, 1, 1  # Blue
+                            size_hint: None, None
+                            size: dp(24), dp(24)
+                        
+                        MDTextField:
+                            hint_text: "Home"
+                            mode: "fill"
+                            fill_color: 0.95, 0.95, 0.95, 1
+                            size_hint_x: 0.8
+                        
+                        MDIconButton:
+                            icon: "swap-vertical"
+                            pos_hint: {"center_y": .5}
+                    
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: dp(10)
+                        
+                        MDIcon:
+                            icon: "circle-outline"
+                            theme_text_color: "Custom"
+                            text_color: 0, 0, 0, 1
+                            size_hint: None, None
+                            size: dp(24), dp(24)
+                        
+                        MDTextField:
+                            hint_text: "Workplace"
+                            mode: "fill"
+                            fill_color: 0.95, 0.95, 0.95, 1
+                            size_hint_x: 0.8
+            
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(50)
+                spacing: dp(10)
+                
+                MDFillRoundFlatButton:
+                    text: "Use Default"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    md_bg_color: 1, 1, 1, 1
+                    size_hint_x: 0.5
+                    line_color: 0.8, 0.8, 0.8, 1
+                
+                MDFillRoundFlatButton:
+                    text: "Use Map"
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: 0, 0.6, 1, 1
+                    size_hint_x: 0.5
+                    icon: "map"
+            
+            MDSeparator:
+            
+            MDLabel:
+                text: "Available Rides"
+                font_style: "H6"
+                size_hint_y: None
+                height: dp(30)
+            
+            MDCard:
+                size_hint_y: None
+                height: "80dp"
+                padding: dp(10)
+                
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(10)
+                    
+                    MDIconButton:
+                        icon: "car"
+                        pos_hint: {"center_y": .5}
+                    
+                    BoxLayout:
+                        orientation: 'vertical'
+                        spacing: dp(2)
+                        
+                        MDLabel:
+                            text: "Carex Mini"
+                            font_style: "H6"
+                        
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            size_hint_y: None
+                            height: dp(20)
+                            
+                            MDIcon:
+                                icon: "clock-outline"
+                                size_hint: None, None
+                                size: dp(20), dp(20)
+                            
+                            MDLabel:
+                                text: "5 mins"
+                                font_style: "Caption"
+                            
+                            MDIcon:
+                                icon: "account-outline"
+                                size_hint: None, None
+                                size: dp(20), dp(20)
+                                padding_x: dp(10)
+                            
+                            MDLabel:
+                                text: "2"
+                                font_style: "Caption"
+                    
+                    MDLabel:
+                        text: "₹15 /km"
+                        halign: "right"
+                        size_hint_x: None
+                        width: dp(80)
+            
+            MDCard:
+                size_hint_y: None
+                height: "80dp"
+                padding: dp(10)
+                
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(10)
+                    
+                    MDIconButton:
+                        icon: "car"
+                        pos_hint: {"center_y": .5}
+                    
+                    BoxLayout:
+                        orientation: 'vertical'
+                        spacing: dp(2)
+                        
+                        MDLabel:
+                            text: "Carex Star"
+                            font_style: "H6"
+                        
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            size_hint_y: None
+                            height: dp(20)
+                            
+                            MDIcon:
+                                icon: "clock-outline"
+                                size_hint: None, None
+                                size: dp(20), dp(20)
+                            
+                            MDLabel:
+                                text: "5 mins"
+                                font_style: "Caption"
+                            
+                            MDIcon:
+                                icon: "account-outline"
+                                size_hint: None, None
+                                size: dp(20), dp(20)
+                                padding_x: dp(10)
+                            
+                            MDLabel:
+                                text: "2"
+                                font_style: "Caption"
+                    
+                    MDLabel:
+                        text: "₹15 /km"
+                        halign: "right"
+                        size_hint_x: None
+                        width: dp(80)
+            
+            MDCard:
+                size_hint_y: None
+                height: "80dp"
+                padding: dp(10)
+                
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(10)
+                    
+                    MDIconButton:
+                        icon: "car"
+                        pos_hint: {"center_y": .5}
+                    
+                    BoxLayout:
+                        orientation: 'vertical'
+                        spacing: dp(2)
+                        
+                        MDLabel:
+                            text: "Carex XL"
+                            font_style: "H6"
+                        
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            size_hint_y: None
+                            height: dp(20)
+                            
+                            MDIcon:
+                                icon: "clock-outline"
+                                size_hint: None, None
+                                size: dp(20), dp(20)
+                            
+                            MDLabel:
+                                text: "5 mins"
+                                font_style: "Caption"
+                            
+                            MDIcon:
+                                icon: "account-outline"
+                                size_hint: None, None
+                                size: dp(20), dp(20)
+                                padding_x: dp(10)
+                            
+                            MDLabel:
+                                text: "2"
+                                font_style: "Caption"
+                    
+                    MDLabel:
+                        text: "₹15 /km"
+                        halign: "right"
+                        size_hint_x: None
+                        width: dp(80)
+            
+            Widget:
+                size_hint_y: 0.1
+            
+            MDFillRoundFlatButton:
+                text: "Confirm"
+                text_color: 1, 1, 1, 1
+                md_bg_color: 0, 0.6, 1, 1
+                size_hint_x: 1
+                height: dp(50)
+                icon: "arrow-right"
+
+<OfferRideScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        
+        MDTopAppBar:
+            title: "Offer a Ride"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: app.go_back()]]
+        
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                padding: dp(20)
+                spacing: dp(15)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                MDLabel:
+                    text: "Ride Details"
+                    font_style: "H6"
+                    size_hint_y: None
+                    height: dp(30)
+                
+                MDTextField:
+                    hint_text: "From"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "map-marker"
+                
+                MDTextField:
+                    hint_text: "To"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "map-marker"
+                
+                MDTextField:
+                    hint_text: "Date"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "calendar"
+                
+                MDTextField:
+                    hint_text: "Time"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "clock"
+                
+                MDLabel:
+                    text: "Vehicle Details"
+                    font_style: "H6"
+                    size_hint_y: None
+                    height: dp(30)
+                
+                MDTextField:
+                    hint_text: "Vehicle Model"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "car"
+                
+                MDTextField:
+                    hint_text: "License Plate"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "card-text"
+                
+                MDTextField:
+                    hint_text: "Available Seats"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "seat"
+                
+                MDTextField:
+                    hint_text: "Price per km (₹)"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "currency-inr"
+                
+                MDLabel:
+                    text: "Additional Information"
+                    font_style: "H6"
+                    size_hint_y: None
+                    height: dp(30)
+                
+                MDTextField:
+                    hint_text: "Notes (optional)"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(100)
+                    multiline: True
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+                
+                MDFillRoundFlatButton:
+                    text: "Offer Ride"
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: 0, 0.6, 1, 1
+                    size_hint_x: 1
+                    height: dp(50)
+
+<RequestRideScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        
+        MDTopAppBar:
+            title: "Request a Ride"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: app.go_back()]]
+        
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                padding: dp(20)
+                spacing: dp(15)
+                size_hint_y: None
+                height: self.minimum_height
+                
+                MDLabel:
+                    text: "Ride Details"
+                    font_style: "H6"
+                    size_hint_y: None
+                    height: dp(30)
+                
+                MDTextField:
+                    hint_text: "From"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "map-marker"
+                
+                MDTextField:
+                    hint_text: "To"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "map-marker"
+                
+                MDTextField:
+                    hint_text: "Date"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "calendar"
+                
+                MDTextField:
+                    hint_text: "Time"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "clock"
+                
+                MDLabel:
+                    text: "Passenger Details"
+                    font_style: "H6"
+                    size_hint_y: None
+                    height: dp(30)
+                
+                MDTextField:
+                    hint_text: "Number of Passengers"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "account-multiple"
+                
+                MDTextField:
+                    hint_text: "Maximum Budget (₹)"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(50)
+                    icon_right: "currency-inr"
+                
+                MDLabel:
+                    text: "Additional Information"
+                    font_style: "H6"
+                    size_hint_y: None
+                    height: dp(30)
+                
+                MDTextField:
+                    hint_text: "Notes (optional)"
+                    mode: "rectangle"
+                    size_hint_y: None
+                    height: dp(100)
+                    multiline: True
+                
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+                
+                MDFillRoundFlatButton:
+                    text: "Request Ride"
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: 0, 0.6, 1, 1
+                    size_hint_x: 1
+                    height: dp(50)
+                    
+                    on_release: app.root.current = "passenger_details"
+
+<RideOptionsDialog>:
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "120dp"
+    
+    MDFillRoundFlatButton:
+        text: "Offer a Ride"
+        text_color: 1, 1, 1, 1
+        md_bg_color: 0, 0.6, 1, 1
+        size_hint_x: 1
+        on_release: app.root.current = "destination"
+    
+    MDFillRoundFlatButton:
+        text: "Request a Ride"
+        text_color: 1, 1, 1, 1
+        md_bg_color: 0, 0.6, 1, 1
+        size_hint_x: 1
+        on_release: app.root.current = "request_ride"
+
+<Tab>:
+    MDIconButton:
+        icon: root.icon
+        user_font_size: "24sp"
+        pos_hint: {"center_x": .5, "center_y": .5}

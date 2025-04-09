@@ -1,0 +1,134 @@
+<CarpoolScreen>:
+    name: "carpool"
+    
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 20
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.98, 1, 1  # Light blue background
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        # Top spacer
+        Widget:
+            size_hint_y: 0.2
+        
+        MDLabel:
+            text: "Welcome To The RideShare App!"
+            
+            font_size: "22sp"
+            pos_hint: {"center_x": .5,"center_y": .85}
+            halign: "center"
+            color: rgba(0,0,59,255)
+
+        # Logo Image
+        Image:
+            source: "assets/carpool_logo.png"
+            size_hint: None, None
+            size: 300, 270
+            pos_hint: {"center_x": 0.5}
+            
+        # Title
+        Label:
+            text: "Account"
+            halign: "center"
+            font_size: "24sp"
+            color: 0, 0, 0, 1  # Black text
+            size_hint_y: None
+            height: 40
+            
+        # Subtitle
+        Label:
+            text: "Reach your Destination without any hesitation!"
+            halign: "center"
+            font_size: "14sp"
+            color: 0.5, 0.5, 0.5, 1  # Gray text
+            size_hint_y: None
+            height: 30
+            
+        # Buttons container
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            size_hint_y: None
+            height: 120
+            pos_hint: {"center_x": 0.5}
+            
+            # Login Button
+            Button:
+                text: "Login"
+                size_hint: 0.8, None
+                height: 50
+                pos_hint: {"center_x": 0.5}
+                on_release: 
+                    root.manager.transition.direction = "left"
+                    app.root.current = "login"
+                background_normal: ''  # Remove default background
+                background_color: 0, 0, 0, 0  # Transparent background (we’ll use canvas instead)
+                canvas.before:
+                    # Shadow effect (slightly offset rectangle)
+                    Color:
+                        rgba: 0, 0, 0, 0.3  # Semi-transparent black for shadow
+                    RoundedRectangle:
+                        pos: self.pos[0], self.pos[1] - 2  # Slightly offset downward
+                        size: self.size
+                        radius: [25,]  # Increased radius for smoother corners
+                    # Main button background
+                    Color:
+                        rgba: 0.2, 0.6, 1, 1  # Your original blue color
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [25,]
+                canvas.after:
+                    # Optional: Add a subtle border or highlight
+                    Color:
+                        rgba: 1, 1, 1, 0.2  # Light white for a slight glow
+                    Line:
+                        rounded_rectangle: [self.pos[0], self.pos[1], self.size[0], self.size[1], 25]
+                        width: 1.5
+                color: 1, 1, 1, 1  # White text color for contrast
+                font_size: 18  # Slightly larger text for elegance
+                            
+            
+            # Register Button
+            Button:
+                text: "Register"
+                size_hint: 0.8, None
+                height: 50
+                pos_hint: {"center_x": 0.5}
+                on_release: 
+                    root.manager.transition.direction = "left"
+                    app.root.current = "register"
+                background_color: 0, 0, 0, 0  # Green color
+                background_normal: ''
+                canvas.before:
+                    # Shadow effect (slightly offset rectangle)
+                    Color:
+                        rgba: 0, 0, 0, 0.3  # Semi-transparent black for shadow
+                    RoundedRectangle:
+                        pos: self.pos[0], self.pos[1] - 2  # Slightly offset downward
+                        size: self.size
+                        radius: [25,]  # Increased radius for smoother corners
+                    # Main button background
+                    Color:
+                        rgba: 0.2, 0.6, 1, 1  # Your original blue color
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [25,]
+                canvas.after:
+                    # Optional: Add a subtle border or highlight
+                    Color:
+                        rgba: 1, 1, 1, 0.2  # Light white for a slight glow
+                    Line:
+                        rounded_rectangle: [self.pos[0], self.pos[1], self.size[0], self.size[1], 25]
+                        width: 1.5
+                color: 1, 1, 1, 1  # White text color for contrast
+                font_size: 18  # Slightly larger text for elegance
+        # Bottom spacer
+        Widget:
+            size_hint_y: 0.2

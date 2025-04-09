@@ -1,0 +1,55 @@
+<ChatBotScreen>:
+    name: 'chatbot'
+    MDBoxLayout:
+        orientation: "vertical"
+
+
+        MDIconButton:
+            icon : "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color:0,0,0,1
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "home"
+
+
+        # Header with better visibility
+        MDLabel:
+            text: "Carpool Bot"
+            font_style: "H5"
+            size_hint_y: None
+            height: "32dp"  # Reduced height
+            color: 0,0,0,1
+            bold: True
+            padding_y: "2dp"  # Reduced padding
+
+
+        ScrollView:
+            MDBoxLayout:
+                id: chat_box
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(10)
+                spacing: dp(10)
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(10)
+            spacing: dp(10)
+
+            MDTextField:
+                id: message_input
+                hint_text: "Type your message..."
+                mode: "rectangle"
+                size_hint_x: 0.85
+                multiline: False
+
+            MDIconButton:
+                icon: "send"
+                on_release:
+                    app.load_default_chat()
+

@@ -1,0 +1,103 @@
+<OfferRideScreen>:
+    name : "offer_ride"
+    BoxLayout:
+        orientation: 'vertical'
+        
+        MDTopAppBar:
+            title: "Offer a Ride"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: app.go_back()]]
+        
+        ScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(20)
+                spacing: dp(15)
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDLabel:
+                    text: "Ride Details"
+                    theme_text_color: "Secondary"
+                    font_style: "H6"
+
+                MDTextField:
+                    id: from_location
+                    hint_text: "From"
+                    mode: "rectangle"
+                    icon_right: "map-marker"
+
+                MDTextField:
+                    id: to_location
+                    hint_text: "To"
+                    mode: "rectangle"
+                    icon_right: "map-marker"
+
+                MDTextField:
+                    id: ride_date
+                    hint_text: "Date (DD-MM-YYYY)"
+                    mode: "rectangle"
+                    icon_right: "calendar"
+
+                MDTextField:
+                    id: ride_time
+                    hint_text: "Time (e.g. 10:30 AM)"
+                    mode: "rectangle"
+                    icon_right: "clock"
+
+                MDLabel:
+                    text: "Vehicle Details"
+                    theme_text_color: "Secondary"
+                    font_style: "H6"
+
+                MDTextField:
+                    id: vehicle_model
+                    hint_text: "Vehicle Model"
+                    mode: "rectangle"
+                    icon_right: "car"
+
+                MDTextField:
+                    id: license_plate
+                    hint_text: "License Plate"
+                    mode: "rectangle"
+                    icon_right: "card-text"
+
+                MDTextField:
+                    id: available_seats
+                    hint_text: "Available Seats"
+                    mode: "rectangle"
+                    icon_right: "seat"
+                    input_filter: "int"
+
+                MDTextField:
+                    id: price_per_km
+                    hint_text: "Price per km (₹)"
+                    mode: "rectangle"
+                    icon_right: "currency-inr"
+                    input_filter: "float"
+
+                MDLabel:
+                    text: "Additional Information"
+                    theme_text_color: "Secondary"
+                    font_style: "H6"
+
+                MDTextField:
+                    id: ride_notes
+                    hint_text: "Notes (optional)"
+                    mode: "rectangle"
+                    multiline: True
+                    height: dp(100)
+
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+                
+                MDFillRoundFlatButton:
+                    text: "Offer Ride"
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: 0, 0.6, 1, 1
+                    size_hint_x: 1
+                    height: dp(50)
+                    
+                    on_release: app.show_offer_popup()
+

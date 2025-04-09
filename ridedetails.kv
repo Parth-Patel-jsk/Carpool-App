@@ -1,0 +1,291 @@
+<RideDetailsScreen>:
+    name: "ride_details"
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: 0
+        padding: 0
+        md_bg_color: 1, 1, 1, 1
+
+        # Header
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: dp(16), dp(10)
+            spacing: dp(10)
+            md_bg_color: 1, 1, 1, 1
+
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                user_font_size: "24sp"
+                size_hint_x: None
+                width: self.height
+                pos_hint: {"center_y": .5}
+                on_release: app.root.current = "home"
+
+            MDLabel:
+                text: 'Book a ride'
+                font_style: "H6"
+                font_size: '22sp'
+                bold: True
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                pos_hint: {"center_y": .5}
+
+        # Main Content
+        ScrollView:
+            do_scroll_x: False
+            
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(16)
+                spacing: dp(16)
+                
+                # Location Card
+                MDCard:
+                    size_hint_y: None
+                    height: dp(120)
+                    padding: dp(16)
+                    radius: dp(10)
+                    elevation: 1
+                    md_bg_color: 0.95, 0.98, 1, 1
+                    
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        spacing: dp(10)
+                        
+                        # Location Icons and Dots
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            size_hint_x: None
+                            width: dp(24)
+                            spacing: dp(4)
+                            
+                            MDIcon:
+                                icon: "circle"
+                                theme_text_color: "Custom"
+                                text_color: 0, 0.47, 1, 1
+                                size_hint: None, None
+                                size: dp(24), dp(24)
+                                pos_hint: {"center_x": .5}
+                            
+                            Widget:
+                                size_hint_y: None
+                                height: dp(20)
+                                canvas:
+                                    Color:
+                                        rgba: 0.7, 0.7, 0.7, 1
+                                    Line:
+                                        points: [self.center_x, 0, self.center_x, self.height]
+                                        width: 1
+                                        dash_length: 3
+                                        dash_offset: 3
+                            
+                            MDIcon:
+                                icon: "circle-outline"
+                                theme_text_color: "Custom"
+                                text_color: 0, 0, 0, 1
+                                size_hint: None, None
+                                size: dp(24), dp(24)
+                                pos_hint: {"center_x": .5}
+                        
+                        # Location Text
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            spacing: dp(16)
+                            
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: dp(40)
+                                
+                                MDLabel:
+                                    text: "Home"
+                                    font_style: "Subtitle1"
+                                    theme_text_color: "Secondary"
+                            
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: dp(40)
+                                
+                                MDLabel:
+                                    text: "Workplace"
+                                    font_style: "Subtitle1"
+                                    theme_text_color: "Secondary"
+                        
+                        # Swap Button
+                        MDIconButton:
+                            icon: "swap-vertical"
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                            md_bg_color: 0, 0.47, 1, 1
+                            size_hint: None, None
+                            size: dp(40), dp(40)
+                            pos_hint: {"center_y": .5, "right": 1}
+                
+                # Ride Option Card
+                MDCard:
+                    size_hint_y: None
+                    height: dp(100)
+                    padding: dp(16)
+                    radius: dp(10)
+                    elevation: 1
+                    md_bg_color: 1, 1, 1, 1
+                    
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        spacing: dp(16)
+                        
+                        # Car Image
+                        MDBoxLayout:
+                            size_hint_x: None
+                            width: dp(60)
+                            
+                            Image:
+                                source: "car_icon.png"  # Replace with your car icon
+                                size_hint: None, None
+                                size: dp(60), dp(40)
+                                pos_hint: {"center_y": .5}
+                        
+                        # Ride Details
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            spacing: dp(4)
+                            
+                            MDLabel:
+                                text: "Carex Mini"
+                                font_style: "H6"
+                                bold: True
+                            
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: dp(20)
+                                
+                                MDIcon:
+                                    icon: "clock-outline"
+                                    size_hint: None, None
+                                    size: dp(20), dp(20)
+                                    theme_text_color: "Secondary"
+                                
+                                MDLabel:
+                                    text: "5 mins"
+                                    font_style: "Caption"
+                                    theme_text_color: "Secondary"
+                        
+                        # Price and Change
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            size_hint_x: None
+                            width: dp(80)
+                            spacing: dp(4)
+                            
+                            MDLabel:
+                                text: "₹ 15 /km"
+                                font_style: "Subtitle1"
+                                bold: True
+                                halign: "right"
+                            
+                            MDTextButton:
+                                text: "Change Ride"
+                                font_style: "Caption"
+                                theme_text_color: "Custom"
+                                text_color: 0, 0.47, 1, 1
+                                halign: "right"
+                                on_release: root.manager.current = "change_ride"
+                
+                # Passengers Selection
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: dp(80)
+                    spacing: dp(8)
+                    
+                    MDLabel:
+                        text: "Number of passengers"
+                        font_style: "Caption"
+                        theme_text_color: "Secondary"
+                    
+                    MDCard:
+                        size_hint_y: None
+                        height: dp(50)
+                        radius: dp(10)
+                        elevation: 1
+                        padding: dp(16), 0
+                        
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            
+                            MDLabel:
+                                text: "3"
+                                font_style: "H6"
+                            
+                            MDIconButton:
+                                icon: "chevron-down"
+                                theme_text_color: "Secondary"
+                                pos_hint: {"center_y": .5}
+                                size_hint_x: None
+                                width: dp(40)
+                
+                # Time Selection
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: dp(80)
+                    spacing: dp(8)
+                    
+                    MDLabel:
+                        text: "Time"
+                        font_style: "Caption"
+                        theme_text_color: "Secondary"
+                    
+                    MDCard:
+                        size_hint_y: None
+                        height: dp(50)
+                        radius: dp(10)
+                        elevation: 1
+                        padding: dp(16), 0
+                        
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            
+                            MDLabel:
+                                text: "8:30 AM"
+                                font_style: "H6"
+                            
+                            MDIconButton:
+                                icon: "chevron-down"
+                                theme_text_color: "Secondary"
+                                pos_hint: {"center_y": .5}
+                                size_hint_x: None
+                                width: dp(40)
+                
+                # Spacer
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+                
+                # Schedule Ride Button
+                MDFillRoundFlatButton:
+                    text: "Schedule Ride"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    md_bg_color: 1, 1, 1, 1
+                    size_hint_x: 1
+                    height: dp(50)
+                    line_color: 0.8, 0.8, 0.8, 1
+                    line_width: 1
+                    on_release: root.manager.current = "schedule"
+                
+                # Book Now Button
+                MDFillRoundFlatButton:
+                    text: "Book Now"
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: 0, 0.47, 1, 1
+                    size_hint_x: 1
+                    height: dp(50)
+                    on_release: app.show_success_popup()

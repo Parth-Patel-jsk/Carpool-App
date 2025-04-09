@@ -1,0 +1,249 @@
+<PassengerDetailsScreen>:
+    name:"passenger_details"
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(10)  # Adjusted for 360px width
+        spacing: dp(8)
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "20sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "home"
+        MDLabel:
+            text: "Passenger Details"
+            halign: "center"
+            font_style: "H6"  # Slightly smaller for better fit
+            size_hint_y: None
+            height: dp(35)
+
+        MDCard:
+            id: details_card
+            orientation: "vertical"
+            padding: dp(8)
+            size_hint: (0.95, None)
+            height: dp(200)  # Reduced height for compactness
+            pos_hint: {"center_x": 0.5}
+            opacity: 0
+
+            MDBoxLayout:
+                spacing: dp(8)
+
+                MDCard:
+                    size_hint: (None, None)
+                    size: (dp(65), dp(65))  # Slightly smaller profile image
+                    radius: [dp(32.5)]
+                    
+                    Image:
+                        source: 'assets/otpverify.png.png'
+                        size_hint: None, None
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(3)
+                    
+                    
+
+                    MDLabel:
+                        text: "DINESH"
+                        font_style: "H6"
+                        font_size: sp(14)  # Adjusted
+                    MDLabel:
+                        text: "TCS, CHENNAI"
+                        theme_text_color: "Secondary"
+                        font_size: sp(11)  # Adjusted
+
+                    MDBoxLayout:
+                        spacing: dp(3)
+                        MDLabel:
+                            text: "4.5"
+                            font_size: sp(12)
+                        MDIcon:
+                            icon: "star"
+                            theme_text_color: "Custom"
+                            text_color: [1, 0.84, 0, 1]
+                            font_size: sp(14)
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: dp(3)
+
+                MDLabel:
+                    text: "Company Address"
+                    theme_text_color: "Secondary"
+                    font_size: sp(11)
+                MDLabel:
+                    text: "SHOZHINGANALLUR IT PARK, CHENNAI"
+                    font_size: sp(11)
+
+                MDLabel:
+                    text: "Work Experience"
+                    theme_text_color: "Secondary"
+                    font_size: sp(11)
+                MDLabel:
+                    text: "25 years"
+                    font_size: sp(11)
+
+                MDLabel:
+                    text: "Double Vaccinated?"
+                    theme_text_color: "Secondary"
+                    font_size: sp(11)
+                MDLabel:
+                    text: "YES"
+                    font_size: sp(11)
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(25)
+            MDLabel:
+                text: "REVIEWS"
+                font_style: "H6"
+                font_size: sp(14)  # Adjusted
+            MDLabel:
+                text: "SEE ALL"
+                halign: "right"
+                theme_text_color: "Primary"
+                font_size: sp(11)
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+
+            MDBoxLayout:
+                id: reviews_container
+                orientation: "vertical"
+                spacing: dp(6)
+                size_hint_y: None
+                height: self.minimum_height  
+
+                # Review 1
+                MDCard:
+                    padding: dp(6)
+                    size_hint: (0.95, None)
+                    height: dp(80)  # Reduced for compactness
+                    pos_hint: {"center_x": 0.5}
+
+                    MDBoxLayout:
+                        spacing: dp(6)
+
+                        MDCard:
+                            size_hint: (None, None)
+                            size: (dp(35), dp(35))  
+                            radius: [dp(17.5)]
+                            MDLabel:
+                                text: "[Image]"
+                                halign: "center"
+                                valign: "middle"
+
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            spacing: dp(3)
+
+                            MDBoxLayout:
+                                MDLabel:
+                                    text: "Good Co-passenger"
+                                    font_size: sp(12)
+                                MDLabel:
+                                    text: "Suresh"
+                                    halign: "right"
+                                    theme_text_color: "Secondary"
+                                    font_size: sp(10)
+
+                            MDBoxLayout:
+                                spacing: dp(1)
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+
+                            MDLabel:
+                                text: "Very good person, safe to travel with, friendly personality."
+                                theme_text_color: "Secondary"
+                                font_size: sp(10)
+
+                # Review 2
+                MDCard:
+                    padding: dp(6)
+                    size_hint: (0.95, None)
+                    height: dp(80)
+                    pos_hint: {"center_x": 0.5}
+
+                    MDBoxLayout:
+                        spacing: dp(6)
+
+                        MDCard:
+                            size_hint: (None, None)
+                            size: (dp(35), dp(35))
+                            radius: [dp(17.5)]
+                            MDLabel:
+                                text: "[Image]"
+                                halign: "center"
+                                valign: "middle"
+
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            spacing: dp(3)
+
+                            MDBoxLayout:
+                                MDLabel:
+                                    text: "Friendly guy"
+                                    font_size: sp(12)
+                                MDLabel:
+                                    text: "Lokesh"
+                                    halign: "right"
+                                    theme_text_color: "Secondary"
+                                    font_size: sp(10)
+
+                            MDBoxLayout:
+                                spacing: dp(1)
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+                                MDIcon:
+                                    icon: "star-outline"
+                                    theme_text_color: "Custom"
+                                    text_color: [1, 0.84, 0, 1]
+
+                            MDLabel:
+                                text: "I absolutely loved being with Dinesh. Though we didn't know each..."
+                                theme_text_color: "Secondary"
+                                font_size: sp(10)
+
+                            MDLabel:
+                                text: "READ MORE"
+                                theme_text_color: "Primary"
+                                halign: "right"
+                                font_size: sp(10)
+                                pos_hint: {"x": 0.7}  # Ensures proper alignment

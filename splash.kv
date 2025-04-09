@@ -1,0 +1,43 @@
+<SplashScreen>:
+    name: "splash"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: dp(20)
+        padding: dp(20)
+
+        Widget:
+
+        Image:
+            source: 'assets/logo.png'  # Update path as needed
+            size_hint: None, None
+            size: "350dp", "350dp"
+            pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDLabel:
+            text: "R I D E S H A R E"
+            font_size: "23sp"
+            halign: "center"
+            pos_hint: {"center_y": .1}
+            theme_text_color: "Custom"
+            text_color: 0.13, 0.13, 0.13, 1  # rgba(34, 34, 34, 255)
+
+        MDLabel:
+            id: tagline_label
+            text: app.current_tagline
+            font_size: "18sp"
+            size_hint_x: .85
+            pos_hint: {"center_x": .5}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0.53, 0.52, 0.76, 1  # rgba(135, 133, 193, 255)
+            opacity: 1
+
+        MDProgressBar:
+            id: progress_bar
+            value: app.progress_value
+            size_hint_y: None
+            height: dp(3.4)
+            pos_hint: {"center_x": .5, "center_y": 1.0}
+            color: 0.13, 0.13, 0.13, 1  # rgba(34, 34, 34, 255)
+
+        Widget:

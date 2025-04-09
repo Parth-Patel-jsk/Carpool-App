@@ -1,0 +1,101 @@
+<RideSummaryScreen>:
+    name: "ride_summary"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(20)
+        md_bg_color: 0.95, 0.98, 1, 1  # Light blue background
+
+        # Back Button
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(40)
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"center_y": 0.5}
+                on_release: root.manager.current = 'home'
+
+        # Title
+        MDLabel:
+            text: "Ride Summary"
+            halign: "center"
+            font_style: "H5"
+            theme_text_color: "Primary"
+            size_hint_y: None
+            height: dp(40)
+
+        # Logo / Illustration
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(180)
+            md_bg_color: 0, 0, 0, 0
+            padding: 0, dp(10)
+
+            Image:
+                source: 'assets/summary_image.png'
+                size_hint: None, None
+                size: "250dp", "200dp"
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+        
+
+        # Summary Info Cards
+        MDCard:
+            orientation: "vertical"
+            size_hint_y: None
+            height: dp(300)
+            padding: dp(20)
+            spacing: dp(15)
+            radius: dp(20)
+            elevation: 3
+            md_bg_color: 1, 1, 1, 1
+
+            MDLabel:
+                text: "From: Home"
+                font_style: "Subtitle1"
+                theme_text_color: "Primary"
+
+            MDLabel:
+                text: "To: IAR"
+                font_style: "Subtitle1"
+                theme_text_color: "Primary"
+
+            MDLabel:
+                text: "Passengers: 1"
+                font_style: "Subtitle1"
+                theme_text_color: "Primary"
+
+            MDLabel:
+                text: "Time: 8:30 AM"
+                font_style: "Subtitle1"
+                theme_text_color: "Primary"
+
+            MDLabel:
+                text: "Ride Type: Mini"
+                font_style: "Subtitle1"
+                theme_text_color: "Primary"
+
+            MDLabel:
+                text: "Pickup Point: Bhaijipura"
+                font_style: "Subtitle1"
+                theme_text_color: "Primary"
+
+            MDTextButton:
+                text: "Change Ride"
+                color: rgba(52, 0, 231, 255) 
+                on_release: root.manager.current = "ride_selection"
+
+            MDTextButton:
+                text: "View on Map"
+                color: rgba(52, 0, 231, 255) 
+                on_release: root.manager.current = "destination"
+
+            MDFillRoundFlatButton:
+                text: "Done"
+                text_color: 1, 1, 1, 1
+                md_bg_color: 0, 0.47, 1, 1
+                size_hint_x: 1
+                height: dp(50)
+                on_release: root.manager.current = "home"
+

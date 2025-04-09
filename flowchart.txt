@@ -1,0 +1,14 @@
+offer a ride and request ride ma change
+
+login -> offer or request
+
+offer -> enter details, schedule ride offer -> offer -> ride_details
+
+request -> enter destination , schedule ride request-> ride_selection -> 
+ride_details -> passenger or rider details -> book -> last summary page with details
+
+
+
+remaining- sql connection 
+login register system
+details storing and fetching for ride details and history

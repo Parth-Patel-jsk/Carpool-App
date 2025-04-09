@@ -1,0 +1,498 @@
+<RideSelectionScreen>:
+    name: "ride_selection"
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: '8dp'
+        padding: '10dp'
+        
+        # Header
+        BoxLayout:
+            size_hint_y: None
+            height: '50dp'
+            spacing: '10dp'
+            
+            MDIconButton:
+                icon: 'arrow-left'
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                user_font_size: "24sp"
+                size_hint_x: None
+                width: self.height
+                on_release: app.root.current = "destination"
+            
+            MDLabel:
+                text: 'Pickup & Destination'
+                font_size: '22sp'
+                bold: True
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'center'
+        
+        # Location selection
+        MDCard:
+            size_hint_y: None
+            height: '90dp'
+            md_bg_color: 0.97, 0.97, 0.97, 1
+            radius: [15, 15, 15, 15]
+            padding: '10dp'
+            
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: '10dp'
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: '25dp'
+                    
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: '10dp'
+                        
+                        MDIconButton:
+                            icon: 'map-marker'
+                            theme_text_color: "Custom"
+                            text_color: 0.1, 0.6, 1, 1
+                            user_font_size: "18sp"
+                            size_hint_x: None
+                            width: self.height
+                        
+                        MDLabel:
+                            text: 'Home'
+                            font_size: '16sp'
+                            color: 0.5, 0.5, 0.5, 1
+                    
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: '10dp'
+                        
+                        MDIconButton:
+                            icon: 'circle-outline'
+                            theme_text_color: "Custom"
+                            text_color: 0, 0, 0, 1
+                            user_font_size: "18sp"
+                            size_hint_x: None
+                            width: self.height
+                        
+                        MDLabel:
+                            text: 'Workplace'
+                            font_size: '16sp'
+                            color: 0.5, 0.5, 0.5, 1
+                
+                MDIconButton:
+                    icon: 'swap-vertical'
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    md_bg_color: 0.1, 0.6, 1, 1
+                    user_font_size: "18sp"
+                    size_hint: None, None
+                    size: '40dp', '40dp'
+                    pos_hint: {'center_y': 0.5}
+                    radius: [20, 20, 20, 20]
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: '50dp'
+            spacing: '10dp'
+            padding: '10dp'
+
+            # Use Default button
+            MDCard:
+                size_hint_x: 1
+                md_bg_color: 1, 1, 1, 1
+                radius: [25, 25, 25, 25]
+                elevation: 0
+                line_color: 0.9, 0.9, 0.9, 1
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: '10dp'
+                    padding: '10dp'
+                    pos_hint: {"center_y": 0.5}
+
+                    MDIconButton:
+                        icon: 'bookmark-outline'
+                        theme_text_color: "Custom"
+                        text_color: 0.5, 0.5, 0.5, 1
+                        user_font_size: "16sp"
+                        size_hint: None, None
+                        size: '30dp', '30dp'
+                        pos_hint: {"center_y": 0.5}
+
+                    MDLabel:
+                        text: 'Use Default'
+                        font_size: '14sp'
+                        color: 0.5, 0.5, 0.5, 1
+                        halign: 'left'
+                        valign: 'center'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        pos_hint: {"center_y": 0.5}
+
+            # Use Map button
+            MDCard:
+                size_hint_x: 1
+                md_bg_color: 0.1, 0.6, 1, 1
+                radius: [25, 25, 25, 25]
+                elevation: 0
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: '10dp'
+                    padding: '10dp'
+                    pos_hint: {"center_y": 0.5}
+
+                    MDIconButton:
+                        icon: 'map'
+                        theme_text_color: "Custom"
+                        text_color: 1, 1, 1, 1
+                        user_font_size: "16sp"
+                        size_hint: None, None
+                        size: '30dp', '30dp'
+                        pos_hint: {"center_y": 0.5}
+                        on_release: root.manager.current = "destination"
+
+                    MDLabel:
+                        text: 'Use Map'
+                        font_size: '14sp'
+                        color: 1, 1, 1, 1
+                        halign: 'left'
+                        valign: 'center'
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        pos_hint: {"center_y": 0.5}
+
+        
+        # Divider
+        BoxLayout:
+            size_hint_y: None
+            height: '30dp'
+            padding: '100dp', '14dp'
+            
+            canvas:
+                Color:
+                    rgba: 0.85, 0.85, 0.85, 1
+                Rectangle:
+                    pos: self.x + self.padding[0], self.y + self.height/2
+                    size: self.width - 2*self.padding[0], 1
+        
+        # Ride options container
+        MDCard:
+            md_bg_color: 0.97, 0.97, 0.97, 1
+            radius: [15, 15, 15, 15]
+            padding: '10dp'
+            
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: '10dp'
+                
+                # Carex Mini
+                MDCard:
+                    size_hint_y: None
+                    height: '70dp'
+                    md_bg_color: 1, 1, 1, 1
+                    radius: [15, 15, 15, 15]
+                    padding: '10dp'
+                    
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: '10dp'
+                        
+                        # Car icon
+                        MDCard:
+                            size_hint_x: None
+                            width: '60dp'
+                            md_bg_color: 0.97, 0.97, 0.97, 1
+                            radius: [10, 10, 10, 10]
+                            elevation: 0
+                            
+                            Image:
+                                source: 'assets/mini.png'  # You'll need to provide this image
+                                size_hint: None, None
+                                size: '50dp', '30dp'
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        
+                        # Ride info
+                        BoxLayout:
+                            orientation: 'vertical'
+                            spacing: '5dp'
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                
+                                MDLabel:
+                                    text: 'CarP Mini'
+                                    font_size: '18sp'
+                                    bold: True
+                                    color: 0, 0, 0, 1
+                                
+                                MDLabel:
+                                    text: '₹ 5 /km'
+                                    font_size: '18sp'
+                                    bold: True
+                                    color: 0, 0, 0, 1
+                                    halign: 'right'
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                spacing: '15dp'
+                                
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_x: None
+                                    width: '80dp'
+                                    
+                                    MDIconButton:
+                                        icon: 'clock-outline'
+                                        theme_text_color: "Custom"
+                                        text_color: 0.6, 0.6, 0.6, 1
+                                        user_font_size: "16sp"
+                                        size_hint_x: None
+                                        width: '20dp'
+                                        padding: 0
+                                    
+                                    MDLabel:
+                                        text: '5 mins'
+                                        font_size: '14sp'
+                                        color: 0.6, 0.6, 0.6, 1
+                                
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_x: None
+                                    width: '40dp'
+                                    
+                                    MDIconButton:
+                                        icon: 'account'
+                                        theme_text_color: "Custom"
+                                        text_color: 0.6, 0.6, 0.6, 1
+                                        user_font_size: "16sp"
+                                        size_hint_x: None
+                                        width: '20dp'
+                                        padding: 0
+                                    
+                                    MDLabel:
+                                        text: '2'
+                                        font_size: '14sp'
+                                        color: 0.6, 0.6, 0.6, 1
+                
+                # Carex Star
+                MDCard:
+                    size_hint_y: None
+                    height: '70dp'
+                    md_bg_color: 1, 1, 1, 1
+                    radius: [15, 15, 15, 15]
+                    padding: '10dp'
+                    
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: '10dp'
+                        
+                        # Car icon
+                        MDCard:
+                            size_hint_x: None
+                            width: '60dp'
+                            md_bg_color: 0.97, 0.97, 0.97, 1
+                            radius: [10, 10, 10, 10]
+                            elevation: 0
+                            
+                            Image:
+                                source: 'assets/two_wheeler.png'  # You'll need to provide this image
+                                size_hint: None, None
+                                size: '50dp', '30dp'
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        
+                        # Ride info
+                        BoxLayout:
+                            orientation: 'vertical'
+                            spacing: '5dp'
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                
+                                MDLabel:
+                                    text: 'CarP Star'
+                                    font_size: '18sp'
+                                    bold: True
+                                    color: 0, 0, 0, 1
+                                
+                                MDLabel:
+                                    text: '₹ 5 /km'
+                                    font_size: '18sp'
+                                    bold: True
+                                    color: 0, 0, 0, 1
+                                    halign: 'right'
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                spacing: '15dp'
+                                
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_x: None
+                                    width: '80dp'
+                                    
+                                    MDIconButton:
+                                        icon: 'clock-outline'
+                                        theme_text_color: "Custom"
+                                        text_color: 0.6, 0.6, 0.6, 1
+                                        user_font_size: "16sp"
+                                        size_hint_x: None
+                                        width: '20dp'
+                                        padding: 0
+                                    
+                                    MDLabel:
+                                        text: '5 mins'
+                                        font_size: '14sp'
+                                        color: 0.6, 0.6, 0.6, 1
+                                
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_x: None
+                                    width: '40dp'
+                                    
+                                    MDIconButton:
+                                        icon: 'account'
+                                        theme_text_color: "Custom"
+                                        text_color: 0.6, 0.6, 0.6, 1
+                                        user_font_size: "16sp"
+                                        size_hint_x: None
+                                        width: '20dp'
+                                        padding: 0
+                                    
+                                    MDLabel:
+                                        text: '2'
+                                        font_size: '14sp'
+                                        color: 0.6, 0.6, 0.6, 1
+                
+                # Carex XL
+                MDCard:
+                    size_hint_y: None
+                    height: '70dp'
+                    md_bg_color: 1, 1, 1, 1
+                    radius: [15, 15, 15, 15]
+                    padding: '10dp'
+                    
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        spacing: '10dp'
+                        
+                        # Car icon
+                        MDCard:
+                            size_hint_x: None
+                            width: '60dp'
+                            md_bg_color: 0.97, 0.97, 0.97, 1
+                            radius: [10, 10, 10, 10]
+                            elevation: 0
+                            
+                            Image:
+                                source: 'assets/sedan.png'  # You'll need to provide this image
+                                size_hint: None, None
+                                size: '50dp', '30dp'
+                                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        
+                        # Ride info
+                        BoxLayout:
+                            orientation: 'vertical'
+                            spacing: '5dp'
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                
+                                MDLabel:
+                                    text: 'carP XL'
+                                    font_size: '18sp'
+                                    bold: True
+                                    color: 0, 0, 0, 1
+                                
+                                MDLabel:
+                                    text: '₹ 5 /km'
+                                    font_size: '18sp'
+                                    bold: True
+                                    color: 0, 0, 0, 1
+                                    halign: 'right'
+                            
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                spacing: '15dp'
+                                
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_x: None
+                                    width: '80dp'
+                                    
+                                    MDIconButton:
+                                        icon: 'clock-outline'
+                                        theme_text_color: "Custom"
+                                        text_color: 0.6, 0.6, 0.6, 1
+                                        user_font_size: "16sp"
+                                        size_hint_x: None
+                                        width: '20dp'
+                                        padding: 0
+                                    
+                                    MDLabel:
+                                        text: '5 mins'
+                                        font_size: '14sp'
+                                        color: 0.6, 0.6, 0.6, 1
+                                
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_x: None
+                                    width: '40dp'
+                                    
+                                    MDIconButton:
+                                        icon: 'account'
+                                        theme_text_color: "Custom"
+                                        text_color: 0.6, 0.6, 0.6, 1
+                                        user_font_size: "16sp"
+                                        size_hint_x: None
+                                        width: '20dp'
+                                        padding: 0
+                                    
+                                    MDLabel:
+                                        text: '2'
+                                        font_size: '14sp'
+                                        color: 0.6, 0.6, 0.6, 1
+                
+                # Spacing
+                Widget:
+                    size_hint_y: 1
+                
+                MDCard:
+                    size_hint_y: None
+                    height: '50dp'
+                    md_bg_color: 0.1, 0.6, 1, 1
+                    radius: [25, 25, 25, 25]
+                    elevation: 0
+                    
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        padding: '5dp'
+                        spacing: '5dp'
+                        
+                        # Empty space to push the button to the center
+                        Widget:
+                            size_hint_x: 0.1  # Small spacer
+                        
+                        MDRectangleFlatButton:
+                            text: "Request ride"
+                            size_hint: None, None
+                            size: '150dp', '40dp'
+                            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                            line_color: 0.13, 0.59, 0.95, 1
+                            text_color: 1, 1, 1, 1
+                            font_size: "16sp"
+                            md_bg_color: 0.13, 0.59, 0.95, 1
+                            on_release: app.show_request_popup()
+                            
+                        MDIconButton:
+                            icon: 'arrow-right'
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                            user_font_size: "18sp"
+                            size_hint: None, None
+                            size: '40dp', '40dp'
+                            pos_hint: {'center_y': 0.5}
+                            
+                        # Empty space to balance the layout
+                        Widget:
+                            size_hint_x: 0.1  # Small spacer

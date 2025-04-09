@@ -1,0 +1,286 @@
+<NotificationScreen>:
+    name: "notifications"
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: 0.1, 0.1, 0.1, 1  # Dark background
+        padding: "8dp"
+        spacing: "4dp"  # Reduced spacing
+
+        MDIconButton:
+            icon : "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color:1,1,1,1
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "home"
+
+
+        # Header with better visibility
+        MDLabel:
+            text: "Notifications"
+            font_style: "H5"
+            size_hint_y: None
+            height: "32dp"  # Reduced height
+            color: 1, 1, 1, 1
+            bold: True
+            padding_y: "2dp"  # Reduced padding
+
+        
+        
+        # ScrollView for notifications with explicit size
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            size_hint_y: 0.8  # Set fixed proportion for scroll area
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: "8dp"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: [0, 0, 0, 8]
+                
+                # Notification 1 - Ride completed
+                MDCard:
+                    size_hint: 1, None
+                    height: "90dp"  # Reduced height
+                    md_bg_color: 0.15, 0.15, 0.15, 1
+                    radius: [8, 8, 8, 8]
+                    padding: "10dp"  # Reduced padding
+                    
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        spacing: "10dp"
+                        
+                        MDIcon:
+                            icon: "check-circle-outline"
+                            font_size: "28sp"  # Reduced size
+                            theme_text_color: "Custom"
+                            text_color: 0.2, 0.8, 0.2, 1
+                            size_hint_x: None
+                            width: "36dp"
+                            pos_hint: {"center_y": 0.5}
+                            
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            spacing: "2dp"  # Reduced spacing
+                            
+                            MDLabel:
+                                text: "Ride Completed"
+                                font_style: "Subtitle1"
+                                bold: True
+                                color: 1, 1, 1, 1
+                                size_hint_y: None
+                                height: "22dp"
+                                
+                            MDLabel:
+                                text: "Your ride to Downtown Mall has been completed."
+                                font_style: "Body2"
+                                color: 0.8, 0.8, 0.8, 1
+                                size_hint_y: None
+                                height: "32dp"
+                                
+                            MDLabel:
+                                text: "5 mins ago"
+                                font_style: "Caption"
+                                color: 0.6, 0.6, 0.6, 1
+                                size_hint_y: None
+                                height: "16dp"
+                
+                # Notification 2 - Promo Code
+                MDCard:
+                    size_hint: 1, None
+                    height: "90dp"  # Reduced height
+                    md_bg_color: 0.15, 0.15, 0.15, 1
+                    radius: [8, 8, 8, 8]
+                    padding: "10dp"  # Reduced padding
+                    
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        spacing: "10dp"
+                        
+                        MDIcon:
+                            icon: "ticket-percent-outline"
+                            font_size: "28sp"  # Reduced size
+                            theme_text_color: "Custom"
+                            text_color: 0.9, 0.5, 0.1, 1
+                            size_hint_x: None
+                            width: "36dp"
+                            pos_hint: {"center_y": 0.5}
+                            
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            spacing: "2dp"  # Reduced spacing
+                            
+                            MDLabel:
+                                text: "New Promo Available"
+                                font_style: "Subtitle1"
+                                bold: True
+                                color: 1, 1, 1, 1
+                                size_hint_y: None
+                                height: "22dp"
+                                
+                            MDLabel:
+                                text: "Use code WEEKEND20 for 20% off your next ride!"
+                                font_style: "Body2"
+                                color: 0.8, 0.8, 0.8, 1
+                                size_hint_y: None
+                                height: "32dp"
+                                
+                            MDLabel:
+                                text: "2 hours ago"
+                                font_style: "Caption"
+                                color: 0.6, 0.6, 0.6, 1
+                                size_hint_y: None
+                                height: "16dp"
+                
+                # Notification 3 - Driver Arriving
+                MDCard:
+                    size_hint: 1, None
+                    height: "90dp"  # Reduced height
+                    md_bg_color: 0.15, 0.15, 0.15, 1
+                    radius: [8, 8, 8, 8]
+                    padding: "10dp"  # Reduced padding
+                    
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        spacing: "10dp"
+                        
+                        MDIcon:
+                            icon: "car"
+                            font_size: "28sp"  # Reduced size
+                            theme_text_color: "Custom"
+                            text_color: 0.2, 0.4, 0.8, 1
+                            size_hint_x: None
+                            width: "36dp"
+                            pos_hint: {"center_y": 0.5}
+                            
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            spacing: "2dp"  # Reduced spacing
+                            
+                            MDLabel:
+                                text: "Driver Arriving Soon"
+                                font_style: "Subtitle1"
+                                bold: True
+                                color: 1, 1, 1, 1
+                                size_hint_y: None
+                                height: "22dp"
+                                
+                            MDLabel:
+                                text: "Your Mini Car driver is 5 minutes away."
+                                font_style: "Body2"
+                                color: 0.8, 0.8, 0.8, 1
+                                size_hint_y: None
+                                height: "32dp"
+                                
+                            MDLabel:
+                                text: "Yesterday, 8:45 PM"
+                                font_style: "Caption"
+                                color: 0.6, 0.6, 0.6, 1
+                                size_hint_y: None
+                                height: "16dp"
+        
+        # Bottom container for Clear All button - reduced height
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "36dp"  # Reduced height
+            padding: [0, 4, 0, 0]  # Reduced padding
+            
+            Widget:
+                size_hint_x: 0.7
+                
+            MDTextButton:
+                text: "Clear All"
+                font_style: "Button"
+                theme_text_color: "Custom"
+                text_color: 0.2, 0.6, 1, 1
+                size_hint_x: 0.3
+                halign: "right"
+                pos_hint: {"center_y": 0.5}
+        
+        # Bottom navigation - fixed height and proper size_hint
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "56dp"
+            md_bg_color: 0.15, 0.15, 0.15, 1
+            
+            # Home tab
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_x: 0.25  # Equal width for all tabs
+                
+                MDIconButton:
+                    icon: "home"
+                    pos_hint: {"center_x": 0.5}
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    user_font_size: "24sp"
+                    
+                MDLabel:
+                    text: "Home"
+                    halign: "center"
+                    font_size: "10sp"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+            
+            # Services tab
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_x: 0.25  # Equal width for all tabs
+                
+                MDIconButton:
+                    icon: "view-grid"
+                    pos_hint: {"center_x": 0.5}
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    user_font_size: "24sp"
+                    
+                MDLabel:
+                    text: "Services"
+                    halign: "center"
+                    font_size: "10sp"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+            
+            # Activity tab
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_x: 0.25  # Equal width for all tabs
+                
+                MDIconButton:
+                    icon: "clipboard-text"
+                    pos_hint: {"center_x": 0.5}
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    user_font_size: "24sp"
+                    
+                MDLabel:
+                    text: "Activity"
+                    halign: "center"
+                    font_size: "10sp"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+            
+            # Account tab
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_x: 0.25  # Equal width for all tabs
+                
+                MDIconButton:
+                    icon: "account"
+                    pos_hint: {"center_x": 0.5}
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    user_font_size: "24sp"
+                    
+                MDLabel:
+                    text: "Account"
+                    halign: "center"
+                    font_size: "10sp"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1

@@ -1,0 +1,229 @@
+<HomeScreen>:
+    name: "home_screen"
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: 1, 1, 1, 1
+        
+        # Map Container
+        RelativeLayout:
+            size_hint_y: 0.9
+            
+            # Map Image
+            Image:
+                source: 'assets/map_background2.png.jpg'
+                allow_stretch: True
+                keep_ratio: False
+                
+                canvas.after:
+                    Color:
+                        rgba: 0, 0.47, 1, 1
+                    Line:
+                        points: [self.width * 0.3, self.height * 0.6, self.width * 0.5, self.height * 0.45, self.width * 0.7, self.height * 0.45]
+                        width: 3
+            
+            # User Location Marker
+            MDCard:
+                size_hint: None, None
+                size: dp(40), dp(40)
+                radius: dp(20)
+                elevation: 2
+                pos_hint: {"center_x": 0.3, "center_y": 0.6}
+                padding: 0
+                md_bg_color: 1, 1, 1, 1
+                
+                FitImage:
+                    source: "assets/profile_pic.png"
+                    radius: [dp(20), dp(20), dp(20), dp(20)]
+            
+            # Car Marker
+            MDCard:
+                size_hint: None, None
+                size: dp(40), dp(40)
+                radius: dp(20)
+                elevation: 2
+                pos_hint: {"center_x": 0.7, "center_y": 0.45}
+                padding: dp(8)
+                md_bg_color: 1, 1, 1, 1
+                
+                Image:
+                    source: "car_icon.png"
+            
+            
+
+            # Top Notification Button
+            MDCard:
+                size_hint: None, None
+                size: dp(42), dp(42)
+                radius: dp(10)
+                elevation: 1
+                pos_hint: {"right": 0.95, "top": 0.97}
+                padding: 0
+                md_bg_color: 0.15, 0.15, 0.15, 1 
+                
+                MDIconButton:
+                    icon: "bell-outline"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    on_release: root.manager.current = "notifications"
+            
+            # Enhanced Search Bar
+            MDCard:
+                size_hint: None, None
+                size: self.parent.width * 0.9, dp(45)
+                radius: dp(28)
+                elevation: 2
+                pos_hint: {"center_x": 0.5, "top": 0.88}
+                padding: dp(10)
+                md_bg_color: 0.15, 0.15, 0.15, 1 
+                
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    height: dp(40)
+                    spacing: dp(10)
+                    padding: dp(10), 0
+                                    
+                    
+                    
+                    TextInput:
+                        id: destination_input
+                        hint_text: "Where you headed?"
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        size_hint_y: None
+                        height: dp(33)
+                        background_color: 0, 0, 0, 0
+                        foreground_color: 0.2, 0.2, 0.2, 1
+                        hint_text_color: 0.5, 0.5, 0.5, 1
+                        padding: [dp(10), dp(5), dp(10), dp(5)]
+                        font_size: '15sp'
+                        cursor_color: 0, 0.47, 1, 1
+
+                    MDIconButton:
+                        icon: "magnify"
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        size_hint_x: None
+                        width: dp(30)
+                        theme_text_color: "Custom"
+                        text_color: 1,1,1,1
+                        on_release: root.manager.current = 'available_rides'
+
+
+            # Left Button (e.g., Chat)
+            MDCard:
+                size_hint: None, None
+                size: dp(49), dp(49)
+                radius: dp(23)
+                elevation: 2
+                pos_hint: {"x": 0.03, "y": 0.05}  # Bottom-left side
+                padding: 0
+                md_bg_color: 0.15, 0.15, 0.15, 1 
+
+                MDIconButton:
+                    icon: "chat-outline"
+                    
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    on_release: app.root.current = 'chatbot'
+
+            # Right Button (e.g., Plus)
+            MDCard:
+                size_hint: None, None
+                size: dp(49), dp(49)
+                radius: dp(23)
+                elevation: 1
+                pos_hint: {"right": 0.97, "y": 0.05}  # Bottom-right side
+                padding: 0
+                
+                md_bg_color: 0.15, 0.15, 0.15, 1 
+
+                MDIconButton:
+                    icon: "plus"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    theme_text_color: "Custom"
+                    text_color: 1,1,1,1
+                    on_release: app.show_ride_options()
+
+
+
+        
+        # Bottom Navigation Bar
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.1
+            height: "60dp"
+            md_bg_color: 0.15, 0.15, 0.15, 1
+            
+            # Home Button (Selected)
+            MDBoxLayout:
+                orientation: 'vertical'
+                
+                MDIconButton:
+                    icon: "home"
+                    theme_text_color: "Custom"
+                    text_color: 0, 0.47, 1, 1
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "24sp"
+                
+                MDLabel:
+                    text: "Home"
+                    theme_text_color: "Custom"
+                    text_color: 0, 0.47, 1, 1
+                    font_style: "Caption"
+                    halign: "center"
+            
+            # Search Button
+            MDBoxLayout:
+                orientation: 'vertical'
+                
+                MDIconButton:
+                    icon: "dots-grid"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "24sp"
+                    on_release: root.manager.current = 'services'
+                MDLabel:
+                    text: "Services"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    font_style: "Caption"
+                    halign: "center"
+            
+            # Activity Button
+            MDBoxLayout:
+                orientation: 'vertical'
+                
+                MDIconButton:
+                    icon: "clipboard-text-outline"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "24sp"
+                    
+                    on_release: root.manager.current = 'available_rides'
+                
+                MDLabel:
+                    text: "Activity"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    font_style: "Caption"
+                    halign: "center"
+            
+            # Profile Button
+            MDBoxLayout:
+                orientation: 'vertical'
+                
+                MDIconButton:
+                    icon: "account-outline"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    pos_hint: {"center_x": .5}
+                    user_font_size: "24sp"
+                    on_release: root.manager.current = 'profile'
+                MDLabel:
+                    text: "Profile"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    font_style: "Caption"
+                    halign: "center"

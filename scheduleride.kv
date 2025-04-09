@@ -1,0 +1,193 @@
+<ScheduleRideScreen>:
+    name: "schedule"
+    
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(15)
+        md_bg_color: 1, 1, 1, 1  # White background to match the screenshot
+
+        # Top bar with back button and title
+        MDBoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: dp(150)
+            padding: [dp(0), dp(0), dp(0), dp(10)]  # Add some bottom padding for spacing
+
+            MDIconButton:
+                icon: "arrow-left"
+                user_font_size: "20sp"
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1  # Black color for the icon
+                pos_hint: {"center_y": 0.3}
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.manager.current = "home"
+
+            MDLabel:
+                text: "Schedule Ride"
+                halign: "center"
+                font_style: "H5"
+                theme_text_color: "Primary"
+                pos_hint: {"center_y": 0.3}
+
+        # Route display (Home to Workplace)
+        MDCard:
+            size_hint_y: None
+            height: dp(80)
+            padding: dp(15)
+            md_bg_color: 0.95, 0.95, 0.95, 1  # Light gray background for the card
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: dp(10)
+
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    spacing: dp(10)
+
+                    MDIcon:
+                        icon: "circle"
+                        theme_text_color: "Custom"
+                        text_color: 0, 0.6, 1, 1  # Blue dot for "Home"
+                        size_hint: None, None
+                        size: dp(16), dp(16)
+                        pos_hint: {"center_y": 0.5}
+
+                    MDLabel:
+                        text: "Home"
+                        theme_text_color: "Primary"
+                        font_size: sp(16)
+                        pos_hint: {"center_y": 0.5}
+
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    spacing: dp(10)
+
+                    MDIcon:
+                        icon: "circle-outline"
+                        theme_text_color: "Custom"
+                        text_color: 0, 0, 0, 1  # Black outline dot for "Workplace"
+                        size_hint: None, None
+                        size: dp(16), dp(16)
+                        pos_hint: {"center_y": 0.5}
+
+                    MDLabel:
+                        text: "Workplace"
+                        theme_text_color: "Primary"
+                        font_size: sp(16)
+                        pos_hint: {"center_y": 0.5}
+
+        # Ride option (Carex Mini)
+        MDCard:
+            size_hint_y: None
+            height: dp(80)
+            padding: dp(10)
+            md_bg_color: 0.95, 0.95, 0.95, 1  # Light gray background for the card
+
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: dp(10)
+
+                MDIconButton:
+                    icon: "car"
+                    user_font_size: "30sp"
+                    theme_text_color: "Custom"
+                    text_color: 0, 0, 0, 1  # Black car icon
+                    pos_hint: {"center_y": 0.5}
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(5)
+
+                    MDLabel:
+                        text: "Mini"
+                        font_style: "H6"
+                        font_size: sp(15)
+                        theme_text_color: "Primary"
+
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        spacing: dp(5)
+
+                     
+                        MDLabel:
+                            icon: "clock-outline"
+                            text: "5 mins"
+                            font_size: sp(10)
+                            theme_text_color: "Secondary"
+                            pos_hint: {"center_y": 0.5}
+
+                MDLabel:
+                    text: "₹ 15 /km"
+                    halign: "right"
+                    font_size: sp(16)
+                    theme_text_color: "Primary"
+                    size_hint_x: None
+                    width: dp(80)
+                    pos_hint: {"center_y": 0.5}
+
+                MDRoundFlatButton:
+                    text: "CHANGE RIDE"
+                    md_bg_color: 0, 0, 0, 0  # Transparent background
+                    text_color: 0, 0.6, 1, 1  # Blue text color
+                    font_size: sp(12)
+                    pos_hint: {"center_y": 0.5}
+
+        # Input fields
+        MDTextField:
+            hint_text: "From"
+            text: "01/01/2022"
+            mode: "rectangle"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+            icon_right: "calendar"  # Add calendar icon
+            line_color_normal: 0.8, 0.8, 0.8, 1  # Light gray border
+            line_color_focus: 0.8, 0.8, 0.8, 1  # Light gray border on focus
+            fill_color: 0.95, 0.95, 0.95, 1  # Light gray background
+
+        MDTextField:
+            hint_text: "To"
+            text: "10/01/2022"
+            mode: "rectangle"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+            icon_right: "calendar"  # Add calendar icon
+            line_color_normal: 0.8, 0.8, 0.8, 1
+            line_color_focus: 0.8, 0.8, 0.8, 1
+            fill_color: 0.95, 0.95, 0.95, 1
+
+        MDTextField:
+            hint_text: "Time"
+            text: "8:30 AM"
+            mode: "rectangle"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+            icon_right: "menu-down"  # Add dropdown icon
+            line_color_normal: 0.8, 0.8, 0.8, 1
+            line_color_focus: 0.8, 0.8, 0.8, 1
+            fill_color: 0.95, 0.95, 0.95, 1
+
+        MDTextField:
+            hint_text: "Number of passengers"
+            text: "1"
+            mode: "rectangle"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+            icon_right: "menu-down"  # Add dropdown icon
+            line_color_normal: 0.8, 0.8, 0.8, 1
+            line_color_focus: 0.8, 0.8, 0.8, 1
+            fill_color: 0.95, 0.95, 0.95, 1
+
+        # Schedule Now button
+        MDRoundFlatButton:
+            id: schedule_button
+            text: "Schedule Now"
+            pos_hint: {"center_x": 0.5}
+            size_hint_x: 0.9
+            size_hint_y: None
+            height: dp(50)
+            md_bg_color: 0, 0.6, 1, 1  # Blue background to match the screenshot
+            text_color: 1, 1, 1, 1  # White text color
+            font_size: sp(16)
+            on_release: app.show_schedule_popup()
